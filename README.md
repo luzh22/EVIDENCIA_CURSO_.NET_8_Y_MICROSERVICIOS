@@ -3,6 +3,10 @@ net 8 microservices : DDD, CQRS, vertical / clean architecture
 CARRERA 7 NO. 156 – 68 PISO 4 EDIFICIO NORTHPOINT III
 TRILLIANT NETWORKS COLOMBIA S.A.S.
 ## conseptos BASICOS  ##
+> Esto es una cita.
+> [!NOTE]
+> Información importante para el usuario [4, 13].
+
 
 ¿que es un microservicio?
 es una forma de construir un programa grande usando muchos programas pequeños 
