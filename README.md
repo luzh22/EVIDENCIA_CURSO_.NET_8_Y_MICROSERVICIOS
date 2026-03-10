@@ -1,6 +1,7 @@
 ## L:1 ##
 net 8 microservices : DDD, CQRS, vertical / clean architecture
-
+CARRERA 7 NO. 156 – 68 PISO 4 EDIFICIO NORTHPOINT III
+TRILLIANT NETWORKS COLOMBIA S.A.S.
 ## conseptos BASICOS  ##
 
 ¿que es un microservicio?
@@ -857,8 +858,113 @@ y asi la clase se ve mas limpia
 en el catalog.API le damos click derecho y luego le damos a la opcion de Build y crear microservicio de catalogo 
 
 ## explica como registrar las bibliotecas mediador y carter en Asp.Net  Dependency  Injeccion Service y Request Pipeline 
+en el archivo program.cs 
+codigo
+
+var builder  = WebAplication.CreateBuilder(args);
+
+//Add services to the container 
+
+builder.Services.AddCarter();
+var app = builder.Buil();
+
+//configure the HTTP request pipeline 
+
+app.MapCarter();
+App.Run();
+
+en el arcivo createProductEndpoint.cs
+en la linea de codigo con la opcion del mapeo 
+public class CreateProductEndpoint : ICarterModule 
+el carter se queda en secundaria  ICarterModule  de implementacion de la interfaz  y exponer las APIS minimas 
+en busca de los metodos del mapa 
+el codigo queda de esta forma :
+
+´´´var builder = WebAplication.Create buidler(args);
+
+//Add to the container 
+
+buidler.Services.AddCarter();
+buidler.Service.AddmEDIATr(Config =>
+{
+  config.RegistrerServicesFromAssembly(typeof(program).Assembly);
+});
+
+var app = Buidler.Build();
+
+// configure HTTP  request pipeline 
+
+app.MapCarter();
+
+app.run();
+´´´
+## como probar la API de catalogo con el envio de crear producto en http post request 
+
+en el visual estudio en el item catalog.API le da al boton derecho y le da click en el proyecto de inicio (set as startup project )
+en el archivo de propiedades y se comprueba la configuracion de linea ya cambiaremos la URL y debe de estar los puertos correctamente como se establecieron
+en la parte de ejecucion seleccionamos el campo que es https 
+debe de salir la ventana de comand y sale que se esta ejecutando correctamente 
+
+tarea:investigar cual es el punto medidor en el codigo 
+
+en el postman el metodo va a ser POSTMAN y la URL ES puede ser el mismo que sale en el navegador o este http://localhost:5050/products  
+RAW   JSON
+cuerpo del endpoint para el JSON 
+{
+  "Name": "New Product A",
+  "Category": ["c1", "c2"],
+  "Description": "Description produt A",
+  "ImageFile": "ImageFile Product A",
+  "Price": 199
+  }
+
+luego mapeamos el :ICarterModule
+y luego se reduce el codigo es quiere decir que elmapeo fue exitoso
 
 
+en el archivo program.cs 
+
+var builder  = WebAplication.CreateBuilder(args);
+
+//Add services to the container 
+
+builder.Services.AddCarter();
+builder.Services.AddMediatR(config =>
+{
+   config.RegisterServicesFromAssembly(typeof(program).Assembly);
+});
+
+var app = builder.Build();
+
+//configure the HTTP request pipeline 
+
+app.MapCarter();
+App.Run();
+
+en visual en el item buildingBlocks 
+en el archivo eliminamos la linea de codigo que dice carters de los bloques de construccion guardar y cerrar 
+en el itemm API catalogo hacer click en el boton derecho darle click a Remove unised References y despues de eso damos otra vez click derecho y gestionamos los paquetes nuget y en el buscador ponemos carter y lo eliminamos 
+luego volvemos a gestionar los paquetes nuget y en el buscador le ponermos carter y lo volvemos a instalar y ahora carter esta en API catolica y se eliminaron los bloques de construccion  eso se ve en el catalog.API
+
+en el archivo CreatePoductEndpoints.cs
+verificamos que si este aplicando el eyes carter y en el archivo program.cs 
+
+luego volvemos al panel de ejcuccion en modo Https 
+luego verificamos que en el postman este con lo campo que se enviaron 
+asi que esta vez se puede ver que el metodo map POST se dispara y podemos  depurar nuestra peticion entrante 
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 
