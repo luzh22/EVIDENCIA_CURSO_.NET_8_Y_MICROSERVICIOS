@@ -492,7 +492,7 @@ Al aplicar estos componentes en conjunto, podrás desarrollar microservicios efi
 permitiendo una gran flexibilidad y escalabilidad en el desarrollo de aplicaciones modernas.
 
 
-![alt](url)<img width="568" height="373" alt="image" src="https://github.com/user-attachments/assets/a9420888-7a3f-485a-9dc6-cf56a4123720" />
+![alt]<img width="568" height="373" alt="image" src="https://github.com/user-attachments/assets/a9420888-7a3f-485a-9dc6-cf56a4123720" />![alt]
 <img width="565" height="387" alt="image" src="https://github.com/user-attachments/assets/973e62cb-3eb6-4124-81f5-c8680ff087cd" />
 <img width="566" height="382" alt="image" src="https://github.com/user-attachments/assets/2df8d431-18a8-4c3e-b64d-f8e65b9e928d" />
 <img width="563" height="372" alt="image" src="https://github.com/user-attachments/assets/9e0fac7a-4026-4488-8f08-996e89600082" />
