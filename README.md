@@ -771,8 +771,14 @@ public class CreateProductEndpoint
 {
 }
 
+luego nos dirijimos a al carpeta de BuildingBlocks  le damos click derecho y le damos en gestionar paquetes nuget en la ventana 
+en la barra de navegacion se busca carter y lo descargamos v
+verificamos que se halla creado correctamente 
+en la carpeta de BuildingBlocks le damos click al archivo buildingBlocks y verificamos que tenga ahora dos bibliotecas 
 
+## como se desarrollar http post endpoint con el uso de carter con la implementacion de modulo I
 
+en visual studio nos dirijimos a la carpeta createProduct y en el archivo CreateProductEndpoint.cs
 
 
 
