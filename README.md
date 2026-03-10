@@ -492,7 +492,7 @@ Al aplicar estos componentes en conjunto, podrás desarrollar microservicios efi
 permitiendo una gran flexibilidad y escalabilidad en el desarrollo de aplicaciones modernas.
 
 
-<img width="568" height="373" alt="image" src="https://github.com/user-attachments/assets/a9420888-7a3f-485a-9dc6-cf56a4123720" />
+![alt](url)<img width="568" height="373" alt="image" src="https://github.com/user-attachments/assets/a9420888-7a3f-485a-9dc6-cf56a4123720" />
 <img width="565" height="387" alt="image" src="https://github.com/user-attachments/assets/973e62cb-3eb6-4124-81f5-c8680ff087cd" />
 <img width="566" height="382" alt="image" src="https://github.com/user-attachments/assets/2df8d431-18a8-4c3e-b64d-f8e65b9e928d" />
 <img width="563" height="372" alt="image" src="https://github.com/user-attachments/assets/9e0fac7a-4026-4488-8f08-996e89600082" />
@@ -536,7 +536,7 @@ se abre el docker y se asegura que la casilla verde aparezca
 se espera a que visual construya una imagen de docker y ejecute el contenedor en el entorno host Docker 
 en el docker debe aparecer elcontenedor y el puerto empieza por el 32 ya que docker asigna cualquier numero para la aplicacion  
 y el puerto 8080 esta dirigido para el entorno interno de docker 
-https://localhost:32768/todoitems 
+´´´https://localhost:32768/todoitems ´´´
 el postman el numero de puerto tuvo que haber cambiado 
 el en docker ya aperece la lista de numeros 
 se copia el numero de puerto y en el postman se cambia el puerto por el que hemos copiado  y metodo get y deben de aparecer la nueva tarea que se ha asignado 
@@ -560,7 +560,7 @@ asi el primer microservicio se ha creado con exito
 clic derecho y en el explorador de archivos se puede ver la estructura de las carpetas creadas correctamente 
 en el visual nos vamos a la carpeta programa.cs y vamos a simplificar el codigo 
 
-var builder=WebAplication.CreateBuilder(args);
+´´´var builder=WebAplication.CreateBuilder(args);
 
 //add servicer to thr container 
 
@@ -568,15 +568,15 @@ var app = builder.Build();
 
 //confugure the HTTP requiest pipeline
 
-app.run();
+app.run();´´´
 
-PUERTOS PARA LOS MICROSERVICIOS 
+´´´PUERTOS PARA LOS MICROSERVICIOS 
 MICROSERVICES               LOCAL ENV               DOCKER ENV              DOCKER INSIDE 
 
 catalog                     5000-5050               6000-6060               8080-8081
 basket                      5001-5051               6001-6061               8080-8081
 discount                    5002-5052               6002-6062               8080-8081
-ordering                    5003-5053               6003-6063               8080-8081
+ordering                    5003-5053               6003-6063               8080-8081´´´
 
 en la carpeta de catalog.APi  le damos clic derecho y vamos a propiedades - vamos a el campo que dice general y en debug le damos click a open debug 
 nos sale una ventana y le damos al campo https  nos dirijimos a  APP URL y observamos y ya ajjaja 
@@ -585,7 +585,7 @@ luego nos devilvemos y nos dirijimos a la carpeta propiedades  y le damos click 
 cambiar el puerto de http a 5000 y el de https a 5050 y 5000 verificamos que esten escuchando los puertos en el triagulo verde 
 en el docker file verificamos que los puertos internos sean correctos  y luego cambiamos la ventana de ejcucion y poner docker
 
-ENDPOINTS de catalogo de los microservicios 
+´´´ENDPOINTS de catalogo de los microservicios 
 
 METODO          REQUEST URL         CASOS DE USO 
 get             /products           list all products 
@@ -593,7 +593,7 @@ get             /products/{id}      fetch a specific product
 get             /products/category  get products by category 
 post            /product            create a new product 
 put             /products/{id}      update a product 
-delete          /product/{id}       remove a product 
+delete          /product/{id}       remove a product ´´´
 
 
 en el visual nos dirijimos a la carpeta caltog y le damos click a la api de catalog, le damos clik derecho y le agregamos una carpeta , le ponemos de nombre modulos 
@@ -601,7 +601,7 @@ le añadimos un nuevo item a esa carpeta y al item le vamos a poner product.cs
 
 nos hubicamos en el item y vamos a crear esta estructura  para la creacion de entidades de dominio 
 
-namespace  Catalog.API.Models;
+´´´namespace  Catalog.API.Models;
 
 public class product 
 {
@@ -612,7 +612,7 @@ public string description {get; set; } default!;
 public string ImageFile {get; set; } = defautl!; 
 public decimal price {get; set; }
 }
-
+´´´
 en el visual nos dirijimos a la carpeta API de la carpeta del catlogo y le damos click derecho para crear nueva carpeta y el nombre sera productos 
 en la carpeta productos creamos una sub carpeta  y la nombramos como createProduct
 en la carpeta create producto vamos a agregar un item que se llame CreateProductHandler.cs
@@ -621,13 +621,13 @@ en la carpeta createproducto vamos a colocar otro item que se llame createProduc
 en visual nos dirijimos a la carpeta createProduct y en el item createProductHandler.cs
 y ponemos este codigo
 
-  namespace Catalog.API.Products.CreatProduct;
+´´´  namespace Catalog.API.Products.CreatProduct;
 
   public record createProductCommand(string name , list<string> category, string description, string ImageFile, decimal price );
   public record  CreateProductResult(Guid Id );
   public record CreateProductCommandHandler
 {
-}
+}´´´
 
 
 en la API del catalogo le damos click derecho para crear paquete nuget 
@@ -635,7 +635,7 @@ en la ventana de paquete nuget  en el buscador ponemos MediatR y lo instalamos y
  luego nos devolvemos a la carpeta de crateProducts y nos dirijimos a el archivo CreateProductHandler.cs 
 
 
-  namespace Catalog.API.Products.CreatProduct;
+´´´  namespace Catalog.API.Products.CreatProduct;
 
   public record createProductCommand(string name , list<string> category, string description, string ImageFile, decimal price )
   :IRequest<createProductResult>;
@@ -643,7 +643,7 @@ en la ventana de paquete nuget  en el buscador ponemos MediatR y lo instalamos y
   public record CreateProductCommandHandler
   internal class CreateProductCommandHandler : IRequestHandler<createProductCommand, CreateProductResult>
 {
-}
+}´´´
 
 click enter para que implemente los miembros de la interfaz 
 
@@ -660,7 +660,7 @@ en la carpeta CQRS vamos a agregar un nuevo item que se va a llamar Icommand.cs
 
 codigo
 
-using MediatR;
+´´´using MediatR;
 namespace buildingBlocks.CQRS;
 
 public interface Icommand : Icommand<unit>
@@ -669,24 +669,24 @@ public interface Icommand : Icommand<unit>
 
 public  interface Icommand<out Tresponse> : IRequest<TResponse>
 }
-}
+}´´´
 
 
 en la carpeta de CQRS  creamos un item que se llame IQuery.cs
 
 codigo
-using MediatR;
+´´´using MediatR;
 
 namespace  buildingBlocks.CQRS;
 
 public interface IQuery<out TResponse> : IRequest<TResponse>
 where TResponse : notnull 
 {
-}
+}´´´
 
 en la carpeta CQRS y creamos un nuevo item que se llame ICommmandHandler.cs
 
-using MediatR;
+´´´using MediatR;
 namespace BUildingBlocks.CQRS;
 
 public interface ICommandHandler<in TCommand>
@@ -700,12 +700,12 @@ where Tcomand : ICommand<unit>
   where TCommand : ICommand<TResponse>
 where TResponse: notnull
 {
-}
+}´´´
 
 en el visual en la carpeta  CQRS crea un nuevo item que se llame IQueryHandler.cs
 codigo 
 
-using mediatR;
+´´´using mediatR;
 namespace BuildingBlocks.CQRS;
 
 public interface IQueryHandler<in TQuery, TResponse>
@@ -713,7 +713,7 @@ public interface IQueryHandler<in TQuery, TResponse>
 where TQuery : IQuery<TResponse>
 where TResponse :
 {
-}
+}´´´
 
   en la carpeta catalogo en el item catalog.API eliminamos la linea de codigo <packagueReference> eso es para evitar conflictos Y asegurarse de que todos los paquetes relacionados con el mediador proceden de los building blocks 
   en la carpeta catalogo de damos click a el campo que dice dependencias y   y le damos en agregar proyecto de referencia 
@@ -723,7 +723,7 @@ where TResponse :
   nos dirijimos a la carpeta de producto y le damos click a el item que se llama CreateProductoHandler.cs
 
 
-  using BuildingBlocks.CQRS;
+ ´´´ using BuildingBlocks.CQRS;
   using MediatR;
   
  namespace Catalog.API.Products.CreatProduct;
@@ -756,13 +756,13 @@ return new CreateProductResult(Guid NewGuid());
 
 
 }
-}
+}´´´
 
 
 en visual nos dirijimos a la carpeta createProduct y en le damos click al item CreateProductEndpoint.cs
 codigo 
 
-namespace Catalog.API.Products.CreateProducts;
+´´´namespace Catalog.API.Products.CreateProducts;
 
 public record  createProductRequest((string name , list<string> category, string description, string ImageFile, decimal price )
 
@@ -770,7 +770,7 @@ public record CreateProductResponse(Guid Id);
 
 public class CreateProductEndpoint
 {
-}
+}´´´
 
 luego nos dirijimos a al carpeta de BuildingBlocks  le damos click derecho y le damos en gestionar paquetes nuget en la ventana 
 en la barra de navegacion se busca carter y lo descargamos v
@@ -782,7 +782,7 @@ en la carpeta de BuildingBlocks le damos click al archivo buildingBlocks y verif
 en visual studio nos dirijimos a la carpeta createProduct y en el archivo CreateProductEndpoint.cs
 code:
 
-using carter;
+´´´using carter;
 namespace Catalog.API.Products.CreateProducts;
 
 public record  createProductRequest((string name , list<string> category, string description, string ImageFile, decimal price )
@@ -796,7 +796,7 @@ public class CreateProductEndpoint : ICarterModule
 
    throw new NotImplementedException();
   }
-}
+}´´´
 
 
 luego nos dirijimos a el archivo CreateProductHandler.cs
@@ -812,7 +812,7 @@ en el archivo createProductEndpoint.cs
 
 code:
   
-using carter;
+´´´using carter;
 namespace Catalog.API.Products.CreateProducts;
 
 public record  createProductRequest((string name , list<string> category, string description, string ImageFile, decimal price )
@@ -838,7 +838,7 @@ public class CreateProductEndpoint : ICarterModule
     .withSummary("createProduct")
     .withDescription("Create Product ");
   }
-}
+}´´´
 
 nos ubicamos en la carpeta de catalogo y debajo debe de estar elitem de catalog.AOI 
 y le damos click derecho y y ponemos la opcion que dice Overview y de nombre le ponemos GlobalUsing.cs
@@ -850,9 +850,9 @@ Global using Mapster;
 
 en el archivo CreateProductEndpoint 
 eliminamos 
-using carter;
+´´´using carter;
 using mediatR;
-using Mapster;
+using Mapster;´´´
 y asi la clase se ve mas limpia 
 
 en el catalog.API le damos click derecho y luego le damos a la opcion de Build y crear microservicio de catalogo 
@@ -861,7 +861,7 @@ en el catalog.API le damos click derecho y luego le damos a la opcion de Build y
 en el archivo program.cs 
 codigo
 
-var builder  = WebAplication.CreateBuilder(args);
+´´´var builder  = WebAplication.CreateBuilder(args);
 
 //Add services to the container 
 
@@ -871,7 +871,7 @@ var app = builder.Buil();
 //configure the HTTP request pipeline 
 
 app.MapCarter();
-App.Run();
+App.Run();´´´
 
 en el arcivo createProductEndpoint.cs
 en la linea de codigo con la opcion del mapeo 
@@ -910,13 +910,13 @@ tarea:investigar cual es el punto medidor en el codigo
 en el postman el metodo va a ser POSTMAN y la URL ES puede ser el mismo que sale en el navegador o este http://localhost:5050/products  
 RAW   JSON
 cuerpo del endpoint para el JSON 
-{
+´´´{
   "Name": "New Product A",
   "Category": ["c1", "c2"],
   "Description": "Description produt A",
   "ImageFile": "ImageFile Product A",
   "Price": 199
-  }
+  }´´´
 
 luego mapeamos el :ICarterModule
 y luego se reduce el codigo es quiere decir que elmapeo fue exitoso
