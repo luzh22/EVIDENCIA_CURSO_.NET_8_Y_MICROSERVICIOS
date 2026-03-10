@@ -779,10 +779,84 @@ en la carpeta de BuildingBlocks le damos click al archivo buildingBlocks y verif
 ## como se desarrollar http post endpoint con el uso de carter con la implementacion de modulo I
 
 en visual studio nos dirijimos a la carpeta createProduct y en el archivo CreateProductEndpoint.cs
+code:
+
+using carter;
+namespace Catalog.API.Products.CreateProducts;
+
+public record  createProductRequest((string name , list<string> category, string description, string ImageFile, decimal price )
+
+public record CreateProductResponse(Guid Id);
+
+public class CreateProductEndpoint : ICarterModule 
+{
+     public void  AddRoutes(IEndpointRouteBuilder app)
+  {
+
+   throw new NotImplementedException();
+  }
+}
 
 
+luego nos dirijimos a el archivo CreateProductHandler.cs
+sepasan los valores de objeto request al objeto handler command 
+en la linea de codigo public record  createProductCommand (string name ....
+en la carpeta BuildingBlocks dirijase a e, archivo BuildingBlocks de la click derecho y ponga y gestione los paquetes nuget 
+y poner en el buscador Mapster y lo instalamos
+luego verficamos que este correctamente instalado y observamos que ya hay tres bibliotecas comunes para cada microservicio 
 
+## como implementar un POST request en http con slash products endpoint para crear productos en el catalogo
+en el visual studio y en la carpeta createProduct 
+en el archivo createProductEndpoint.cs 
 
+code:
+  
+using carter;
+namespace Catalog.API.Products.CreateProducts;
+
+public record  createProductRequest((string name , list<string> category, string description, string ImageFile, decimal price )
+
+public record CreateProductResponse(Guid Id);
+
+public class CreateProductEndpoint : ICarterModule 
+{
+     public void  AddRoutes(IEndpointRouteBuilder app)
+  {
+     app.MapPost("/products", async (CreateProductRequest request, ISender sender )=>
+     {
+     var command = request.Adapt<CreateProductCommand>();
+
+     var response =  result.Adapt<CreateProductResponse>();
+     return results Created($"/products/{response.Id}", response);
+
+     var result =await sender.send(command);
+     })
+    .WithName("CreateProduct")
+    .Produces<CreateProductResponse>(StatusCodes.Status201Created)
+    .ProducesProblem(StatusCodes.Status400BadRequest)
+    .withSummary("createProduct")
+    .withDescription("Create Product ");
+  }
+}
+
+nos ubicamos en la carpeta de catalogo y debajo debe de estar elitem de catalog.AOI 
+y le damos click derecho y y ponemos la opcion que dice Overview y de nombre le ponemos GlobalUsing.cs
+se añade global using statement que incluye carter Master y Mediador 
+y se agregaran 
+global using carter;
+global using MediatR;
+Global using Mapster;
+
+en el archivo CreateProductEndpoint 
+eliminamos 
+using carter;
+using mediatR;
+using Mapster;
+y asi la clase se ve mas limpia 
+
+en el catalog.API le damos click derecho y luego le damos a la opcion de Build y crear microservicio de catalogo 
+
+## explica como registrar las bibliotecas mediador y carter en Asp.Net  Dependency  Injeccion Service y Request Pipeline 
 
 
 
