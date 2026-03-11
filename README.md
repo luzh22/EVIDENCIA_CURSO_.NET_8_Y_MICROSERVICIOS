@@ -1202,8 +1202,7 @@ App.Run();´
  crearemos la cadena de conexion 
 
  codigo: 
- ´´´
- {
+ ´´´{
     "ConnectionStrings":
     "DataBase": "Server=Localhost;Port=5432;DataBase=CatalogDB;user Id=postgres;Password=postgres;Include Error Detail=True
 },
@@ -1214,8 +1213,101 @@ App.Run();´
 }
 },
 "AllowedHosts": "*"
-}
-´´´
+}´´´
+
+## se aprende  la estrategia de despliegue de nuestros microservicios de comercio electronico, centrandose especialmente en la base de datos PostgreSQL mediante Docker compose  
+
+en la configuración de la base de datos PostgreSQL mediante Docker Compose.
+
+Aquí puedes ver la arquitectura de recapitulación que contiene diferentes bases de datos y diferentes microservicios.
+
+Así que aquí microservicios de catálogo utilizando la base de datos PostgreSQL como servicios de respaldo.
+
+Y vamos a añadir el Redis, SQLite, SQL server, RabbitMQ y así sucesivamente.
+
+Hasta ahora hemos construido sobre microservicios de catálogo en nuestro entorno local.
+
+Pero ahora necesitamos conectarnos a la base de datos y necesitamos una IP de la base de datos y un número de puerto al que podamos conectarnos
+
+desde nuestro ordenador local.
+
+Así que debemos descargar la imagen Docker PostgreSQL y ejecutar esta imagen en nuestro entorno Docker compose.
+
+De esta forma podemos conectar la base de datos desde nuestros microservicios de catálogo.
+
+Pero antes deberíamos aclarar nuestra estrategia de despliegue de microservicios de comercio electrónico.
+
+Aquí puede ver la imagen en la diapositiva.
+
+Nuestra estrategia de despliegue consta de dos pasos principales.
+
+El primero es desarrollo local con Docker compose para servicios de respaldo, y el segundo es entorno Docker
+
+completo y orquestación, todos los microservicios y bases de datos.
+
+Así que permítanme explicar uno por uno, en la primera fase de nuestra estrategia de despliegue, nos centramos en el desarrollo de microservicios
+
+locales.
+
+A continuación, utilizamos Docker Compose para poner en marcha los servicios de respaldo, como las bases de datos, que están expuestos
+
+a nuestro entorno local.
+
+Así que esta configuración nos permite desarrollar y probar microservicios localmente mientras nos conectamos a servicios de respaldo
+
+en contenedores.
+
+En este caso, catálogo utilizando la base de datos PostgreSQL como servicios de respaldo.
+
+Así que desarrollaremos microservicios localmente y después activaremos los servicios de respaldo utilizando Docker y Docker
+
+Compose.
+
+Si pasamos a la segunda fase de la estrategia de despliegue, que es el Docker compose, todo incluyendo microservicios
+
+y servicios de respaldo en el entorno Docker.
+
+Así que la segunda fase consiste en orquestar todos los microservicios, incluidas sus dependencias dentro de un
+
+entorno Docker compose.
+
+Se trata de una configuración completa que simula un entorno más parecido al de producción y permite realizar pruebas
+
+de principio a fin.
+
+Así que debemos orquestar todos los microservicios con Docker compose y probar dentro del entorno Docker completo con
+
+perspectiva de extremo a extremo.
+
+Y después podemos añadir una estrategia de despliegue adicional, que incluya el despliegue de todos los microservicios
+
+en Kubernetes Minikube o en la nube EKS, etc.
+
+Pero durante el curso nos centraremos en estos dos pasos.
+
+Así que ahora vamos a centrarnos en la configuración de la base de datos PostgreSQL para microservicios de catálogo utilizando el Docker
+
+compose.
+
+## como configurar la base de datos PostgreSQL utilizando el archivo Docker compose para el entorno Docker multicontenedor 
+
+en hub.docker.com/_/postgres
+o en la imagen Docker de PostgreSQL desde el opticom. y hay se encontrara la informacion 
+<img width="1692" height="646" alt="image" src="https://github.com/user-attachments/assets/b4a27ef0-c330-45d1-bbf0-8c6f25f2c322" />
+
+en visual nos dirijimos a el Docker y observamos que este bien 
+vamos a la API
+<img width="1412" height="606" alt="image" src="https://github.com/user-attachments/assets/58e3da34-6db2-4897-be0e-39ce7224412b" />
+
+
+
+
+
+
+
+
+
+
 
 
 
