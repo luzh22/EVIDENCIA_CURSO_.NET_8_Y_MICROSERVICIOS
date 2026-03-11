@@ -496,7 +496,7 @@ Al aplicar estos componentes en conjunto, podrás desarrollar microservicios efi
 permitiendo una gran flexibilidad y escalabilidad en el desarrollo de aplicaciones modernas.
 
 
-![alt]<img width="568" height="373" alt="image" src="https://github.com/user-attachments/assets/a9420888-7a3f-485a-9dc6-cf56a4123720" />
+<img width="568" height="373" alt="image" src="https://github.com/user-attachments/assets/a9420888-7a3f-485a-9dc6-cf56a4123720" />
 ![alt](url)<img width="565" height="387" alt="image" src="https://github.com/user-attachments/assets/973e62cb-3eb6-4124-81f5-c8680ff087cd" />
 ![alt](url)<img width="566" height="382" alt="image" src="https://github.com/user-attachments/assets/2df8d431-18a8-4c3e-b64d-f8e65b9e928d" />
 ![alt](url)<img width="563" height="372" alt="image" src="https://github.com/user-attachments/assets/9e0fac7a-4026-4488-8f08-996e89600082" />
@@ -928,7 +928,7 @@ y luego se reduce el codigo es quiere decir que elmapeo fue exitoso
 
 en el archivo program.cs 
 
-var builder  = WebAplication.CreateBuilder(args);
+´´´var builder  = WebAplication.CreateBuilder(args);
 
 //Add services to the container 
 
@@ -943,7 +943,7 @@ var app = builder.Build();
 //configure the HTTP request pipeline 
 
 app.MapCarter();
-App.Run();
+App.Run();´´´
 
 en visual en el item buildingBlocks 
 en el archivo eliminamos la linea de codigo que dice carters de los bloques de construccion guardar y cerrar 
@@ -957,13 +957,265 @@ luego volvemos al panel de ejcuccion en modo Https
 luego verificamos que en el postman este con lo campo que se enviaron 
 asi que esta vez se puede ver que el metodo map POST se dispara y podemos  depurar nuestra peticion entrante 
 
+##  como desarrollar el manejador  de la infraestructura API catalogo y los clusteres de puntos finales para realizaer operaciones CRUD 
+realizar operaciones Crud.
+
+Por lo tanto, exploraremos y desarrollaremos operaciones relacionadas con la infraestructura para realizar consultas de datos en microservicios
+
+de API católicos.
+
+Y utilizaremos Martinet Transactional DocumentDB para la base de datos PostgreSQL.
+Martin estará en el DocumentDB sobre la base de datos PostgreSQL, y usaremos sesiones de apertura, y configuraremos y
+ejecutaremos la base de datos PostgreSQL usando los archivos Docker compose para el entorno Docker Multi-container.
+Y desarrollaremos carpetas de características de productos en arquitectura vertical slice siguiendo el patrón
+de diseño securities y utilizando la librería mediator en las clases handler.
+Y después desarrollaremos clases de endpoints con el uso de las APIs mínimas y la librería Carter.
+Y por último vamos a probar nuestros puntos finales de productos que se conectan al entorno Docker en el contenedor Docker PostgreSQL.
+
+## se exploran la integracion de servicios de base de datos con los microservicios 
+, en concreto, nos centraremos en nuestros microservicios de API de catálogo.
+Y es el uso de la base de datos PostgreSQL con el uso de la biblioteca Martin.
+Empecemos hablando de los servicios de respaldo en el ámbito de los microservicios de respaldo para la
+nube.
+Los microservicios nativos son los recursos o componentes externos que los microservicios, en función de sus operaciones,
+proporcionan para dar soporte a diversas funcionalidades como el almacenamiento de datos, la mensajería, el almacenamiento
+en caché y la autenticación en una arquitectura nativa en la nube.
+Los servicios de respaldo como bases de datos, sistemas de mensajería y servicios de caché se tratan como recursos adjuntos.
+Estos servicios de respaldo se encuentran fuera de los microservicios y pueden intercambiarse o sustituirse sin cambiar
+la lógica central de los microservicios.
+En una arquitectura de microservicios nativa de la nube, los servicios de apoyo están desacoplados de los propios microservicios
+y fomentan la flexibilidad, escalabilidad y facilidad de mantenimiento.
+Así que aquí puedes ver la ilustración que muestra varios servicios de respaldo en un ecosistema nativo de la nube.
+Como se puede ver que las bases de datos estos son los NoSQL Newsql y bases de datos relacionales.
+Cachés distribuidas, corredores de mensajes, sistemas de flujo de eventos, sistemas de autorización de autenticación, pasarelas
+API, mallas de servicios, registro, supervisión, rastreo, preocupaciones transversales, etc.
+Todos estos servicios pueden integrarse con microservicios y actuar como servicios de apoyo.
+Pueden intercambiarse o sustituirse sin cambiar la lógica central del microservicio durante el curso.
+Utilizaremos estos servicios como servicios de respaldo de emisión de aplicaciones de microservicios.
+Si observas nuestra arquitectura, puedes ver que nuestros microservicios de catálogo dependen de la base de datos PostgreSQL
+para las operaciones de base de datos.
+Sin embargo, los microservicios de catálogo encajan muy bien con las bases de datos de documentos NoSQL.
+Así que por qué utilizamos PostgreSQL base de datos relacional para las operaciones de catálogo y operaciones de productos, incluso son
+más aplicables con la base de datos de documentos NoSQL.
+La respuesta está en el enfoque innovador.
+En la base de datos PostgreSQL, utilizamos las capacidades de almacenamiento de objetos Json de PostgreSQL y las transformamos
+en una base de datos de documentos manteniendo una fuerte consistencia, por lo que actúa como una base de datos SQL ingenua, proporcionando
+características NoSQL de base de datos de documentos y una fuerte consistencia como las bases de datos relacionales.
+
+¿Cómo podemos hacerlo?
+
+Por supuesto usaremos la librería Martin ORM y ya sabemos lo que era la Martin Martin es una librería de mapeo
+objeto-relacional.
+Y esto utilizará las capacidades Json de PostgreSQL.
+Y Martin es una potente librería que transforma PostgreSQL en una base de datos transaccional dotnet.
+Combina la flexibilidad de una base de datos de documentos con la fiabilidad de las bases de datos relacionales y los microservicios
+de catálogos utilizando Martin para la interacción PostgreSQL como base de datos de documentos.
+
+## explica como abrir sesiones en Martin como base de datos de documentos 
+La sesión de Martin es un patrón de interacción para trabajar con los documentos almacenados en la base de datos PostgreSQL.
+
+Puede ver la imagen en la diapositiva.
+
+El almacén de documentos I es la raíz del uso de Martin, pero la mayor parte del uso de Martin en el código comenzará con
+
+uno de estos tipos de sesión que se pueden crear a partir de un almacén de documentos I.
+
+Así que bajo el almacén de documentos I hay diferentes sabores de sesión y el almacén raíz.
+
+Así pues, se trata de sesiones de consulta que optimizan los escenarios de sólo lectura y sesiones de documento que optimizan los escenarios
+
+de lectura y escritura.
+
+Se lo explicaré uno por uno.
+
+La primera son las sesiones de consulta.
+
+Estas sesiones se utilizan mejor para consultar documentos sin necesidad de realizar un seguimiento o guardar los cambios.
+
+Así que bajo la sesión de documento para operaciones de lectura y escritura, también podemos utilizar diferentes tipos de sesiones de documento.
+
+Permítanme empezar por la primera, que es la documentación del mapa de identidad.
+
+La sesión de documentos I de Martin implementa el patrón de mapa de identidad que busca almacenar en caché documentos cargados
+
+por ID.
+
+Este comportamiento puede ser muy valioso, por ejemplo, a la hora de gestionar las peticiones web o los mensajes del bus de servicios.
+
+Cuando muchos objetos o funciones diferentes pueden necesitar acceder al mismo documento lógico.
+
+El segundo tipo es la sesión ligera de documentos.
+
+Es adecuado para transacciones pequeñas con una mezcla de operaciones de lectura y escritura.
+
+Para las operaciones que implican actualizaciones, inserciones o eliminaciones, utilizamos sesiones ligeras.
+
+Sigue siendo transaccional pero no rastrea los cambios en el documento cargado.
+
+Y la última es la sucia comprobación de la documentación.
+
+En este caso, se trata de la sesión de documentos de comprobación sucia, y la estación de documentos I se abrió con la comprobación
+
+sucia activada.
+
+La sesión intentará detectar los cambios en cualquiera de los documentos cargados por esa sesión.
+
+La comprobación sucia se realiza manteniendo el Json original obtenido del PostgreSQL,
+
+y utilizando el Newtonsoft. biblioteca json que hace un nodo por nodo.
+
+Comparación de la representación Json del documento en el momento en que se llama a I document session, para
+
+poder encontrar la imagen.
+
+Cómo podemos crear este tipo de sesiones a partir de la BD de Documentos Martin.
+
+Y aquí se puede ver que podemos utilizar un almacén de documentos y notación de puntos para crear sesión de consulta.
+
+Aquí puedes ver la sesión de consulta y podemos crear sesiones ligeras, sesiones de identidad, sesiones
+
+de trucos sucios, etc.
+
+Permiten crear sesiones utilizando el almacén de documentos.
+
+Y aquí puedes ver las operaciones para realizar operaciones de lectura escritura o habilitar las funciones de identity
+
+map y dirty checking.
+
+¿Cuál es la mejor práctica?
+
+La mejor práctica consiste en comprender y elegir el tipo adecuado de sesión en Martin, lo cual es crucial para el
+
+tratamiento eficaz de los datos en sus aplicaciones.
+
+Procure utilizar siempre la sesión más ligera que se adapte a sus necesidades y asegúrese de eliminar correctamente las sesiones
+
+para mantener el rendimiento.
+
+Por lo tanto, utilizaremos principalmente sesiones ligeras optimizadas para operaciones de lectura y escritura.
+
+##  como desarrollar una clase mejorada de comandos para operaciones de base de datos usando la libreria maten
+
+asi que  se usan contrucciones primarias para inyectar clases Martin en la clase mejorada
+para instalar el maten debemos saber si el paquete es comun para todos los microservicios instalaremos este paquete en el proyecto 
+de bibliotecas de clases building Blocks 
+si no, instalamos los microservicios especificos que quieran ese paquete de bibliotecas 
+asi que martin es un paquete ORM  que funciona en la base de datos de postgreSQL 
+en el visial studio le damos clik a la API catalog  y en los paquetes nuget y buscamos marten y lo instalamos 
+
+using BuildingBlocks.CQRS;
+  using MediatR;
+  using  Catalog.API.Models;
+  using marten;
+  
+ namespace Catalog.API.Products.CreatProduct;
+
+  public record createProductCommand(string name , list<string> category, string description, string ImageFile, decimal price )
+  : I command <CreateProductResult>;
+  
+  public record  CreateProductResult(Guid Id );
+  
+  internal class CreateProductCommandHandler(IDocummentSession session)
+  :IcommandHandler<createProductCommand, createProductResult>
+{
+
+public async Task<CreateProductResult>handle(CreateProductCommand command cancellation   
+{
+//create product  entity from command object 
+
+
+var product = new preoduct
+{
+name=command 
+category = command.category,
+Description =  command.Description,
+ImageFile =Command.ImageFile,
+price =commmand.Price
+};
+
+//save to database 
+
+ssesion.Store(product);
+await session.saveChangesAsync(CancellationToken);
+
+//return CreateProductResult result
+return new CreateProductResult(Product.Id);
+
+
+en la linea de codigo internal class (IdDocumentSesion) click derecho para ver que es una interfaz y le damos en go to definition 
+y se exponen los servicios 
+
+en el archivo globalUsing.cs 
+vamos a añadir los using utilizando el maten mover a global usando declaraciones 
+codigo :
+´´´
+global using carter;
+global using Mapster;
+global using MediatR;
+global using Marten;
+global using BuildingBlocks.CQRS;
+global using Catalog.API.Models;
+´´´
+luego en el archivo handler eliminamos estas sentencias using para ver el codigo mas limpio y es la implementacion de manejador are
+´´´
+using BuildingBlocks.CQRS;
+  using MediatR;
+  using  Catalog.API.Models;
+  using marten;
+  ´´´
+  ## como registrar y configurar Martin  Document DataBase en program.cs
+
+´´´
+var builder  = WebAplication.CreateBuilder(args);
+
+//Add services to the container 
+
+builder.Services.AddCarter();
+builder.Services.AddMediatR(config =>
+{
+   config.RegisterServicesFromAssembly(typeof(program).Assembly);
+});
+
+builder.Services.AddMarten(opts =>
+{
+  opts.Connection(builder.ConfigurationString("DataBase")!);
+  opts.AutoCreateSchemaObjects
+}).UseLightSessions();
+var app = builder.Build();
+
+//configure the HTTP request pipeline 
+
+app.MapCarter();
+App.Run();´
 
 
 
+ click derecho a esa linea de codigo opts.AutoCreateSchemaObjects y selecionar elcampo de go to Definition
+ asi se podra visualizar que martin  utiliza la operacion de creacion automatica para crear o actualizar 
 
+ en el archivo program.cs 
+ eliminamos la linea de codigo opts.AutoCreateSchemaObjects
 
+ ahora se va a configurar la cadena de conexion de base de datos en el archivo JSON de configuracion de la aplicacion 
 
+ en el archivo appSenttings .json 
+ crearemos la cadena de conexion 
 
+ codigo: 
+ ´´´
+ {
+    "ConnectionStrings":
+    "DataBase": "Server=Localhost;Port=5432;DataBase=CatalogDB;user Id=postgres;Password=postgres;Include Error Detail=True
+},
+"Logging":{
+"logLevel":{
+"Default":n" Information",
+"Microsoft.AspNetCore": "Warning"
+}
+},
+"AllowedHosts": "*"
+}
+´´´
 
 
 
