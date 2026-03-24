@@ -497,9 +497,9 @@ permitiendo una gran flexibilidad y escalabilidad en el desarrollo de aplicacion
 
 
 <img width="568" height="373" alt="image" src="https://github.com/user-attachments/assets/a9420888-7a3f-485a-9dc6-cf56a4123720" />
-![alt](<img width="565" height="387" alt="image" src="https://github.com/user-attachments/assets/973e62cb-3eb6-4124-81f5-c8680ff087cd" />)
+<img width="565" height="387" alt="image" src="https://github.com/user-attachments/assets/973e62cb-3eb6-4124-81f5-c8680ff087cd" />
 <img width="566" height="382" alt="image" src="https://github.com/user-attachments/assets/2df8d431-18a8-4c3e-b64d-f8e65b9e928d" />
-(url)<img width="563" height="372" alt="image" src="https://github.com/user-attachments/assets/9e0fac7a-4026-4488-8f08-996e89600082" />
+<img width="563" height="372" alt="image" src="https://github.com/user-attachments/assets/9e0fac7a-4026-4488-8f08-996e89600082" />
 <img width="1183" height="508" alt="image" src="https://github.com/user-attachments/assets/e554559e-b954-47b0-9e7a-ce371bf60e9a" />
 <img width="1149" height="570" alt="image" src="https://github.com/user-attachments/assets/d89a84c6-afb2-468e-a2cb-c6ea5dc00188" />
 <img width="1163" height="487" alt="image" src="https://github.com/user-attachments/assets/89a91a1f-5922-4b3f-85cb-5772bac896cb" />
